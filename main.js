@@ -43,3 +43,33 @@
 //     console.log(isi)
 //     p.innerText = isi
 // })
+
+// Fungsi untuk menambahkan tugas ke daftar
+function addTask() {
+    var taskInput = document.getElementById("task");
+    var taskText = taskInput.value;
+    if (taskText.trim() === "") {
+      alert("Masukkan tugas terlebih dahulu!");
+      return;
+    }
+    var taskList = document.getElementById("taskList");
+    var taskItem = document.createElement("li");
+    taskItem.innerHTML = '<input type="checkbox" onclick="completeTask(this)"> ' + taskText;
+    taskList.appendChild(taskItem);
+    taskInput.value = "";
+  }
+  
+  // Fungsi untuk menandai tugas sebagai selesai
+  function completeTask(checkbox) {
+    var taskText = checkbox.nextSibling;
+    if (checkbox.checked) {
+      taskText.style.textDecoration = "line-through";
+    } else {
+      taskText.style.textDecoration = "none";
+    }
+  }
+  
+  // Menambahkan event listener ke tombol "Tambah"
+  var addButton = document.getElementById("addButton");
+  addButton.addEventListener("click", addTask);
+  
